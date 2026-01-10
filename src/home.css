@@ -1,0 +1,267 @@
+:root {
+  --bg: #05070f;
+  --panel: rgba(15, 20, 45, 0.85);
+  --neon: #4fd1ff;
+  --neon-strong: #00e5ff;
+  --neon-glow: rgba(79, 209, 255, 0.6);
+  --text: #e9f1ff;
+  --muted: #1e2d4b;
+  --border: rgba(79, 209, 255, 0.25);
+}
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, #0a0f2b, var(--bg)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.02) 0,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  padding: 1rem;
+}
+
+/* =========================
+   TITLE
+   ========================= */
+
+.title {
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--neon), #9ef5ff, var(--neon));
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 4s linear infinite;
+}
+
+@keyframes glowText {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* =========================
+   PANEL
+   ========================= */
+
+.cont {
+  position: relative;
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.8rem;
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 0 1px rgba(79,209,255,0.05),
+    0 30px 80px rgba(0,0,0,0.8);
+}
+
+/* =========================
+   INPUT ROW
+   ========================= */
+
+.input-cont {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+}
+
+/* =========================
+   INPUTS
+   ========================= */
+
+.input {
+  position: relative;
+  overflow: hidden;
+  background: rgba(5, 8, 20, 0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 72px;
+  padding: 0.55rem 0.6rem;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  outline: none;
+  caret-color: var(--neon);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  /* background-image: linear-gradient(
+    325deg,
+    hsla(217 100% 56% / 1) 0%,
+    hsla(194 100% 69% / 1) 55%,
+    hsla(217 100% 56% / 1) 90%
+  ); */
+}
+
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+/* neon focus */
+.input:focus {
+  border-color: var(--neon-strong);
+  box-shadow:
+    0 0 0 2px var(--neon-glow),
+    0 0 25px rgba(0,229,255,0.4);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.solve-btn {
+  display: inline-block;
+  margin-top: 1.3rem;
+  padding: 0.75rem 1.7rem;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: linear-gradient(135deg, #00e5ff, #4f8cff);
+  color: #001018;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  width: 100%;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow:
+    0 0 20px rgba(0,229,255,0.5),
+    0 0 60px rgba(0,229,255,0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.solve-btn:is(:hover, :focus) {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 30px rgba(0,229,255,0.7),
+    0 0 90px rgba(0,229,255,0.35);
+}
+
+.solve-btn:active {
+  transform: scale(0.96);
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  min-height: 3.2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: #e6f1ff;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.15),
+    rgba(120, 0, 255, 0.12)
+  );
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.18),
+    inset 0 0 18px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  /* animation: resultFadeIn 0.6s ease-out; */
+}
+
+.glass-sweep {
+  animation: resultFadeIn 0.6s ease-out;
+}
+
+/* ===== RESULT DIAGONAL SWEEP ===== */
+.glass-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35),
+    transparent 70%
+  );
+
+  transform: translateX(-120%);
+  animation: resultSweep 2.5s ease-in-out infinite;
+}
+
+@keyframes resultSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  60% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes resultFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .input {
+    width: 58px;
+    font-size: 0.95rem;
+  }
+
+  .cont {
+    padding: 1.3rem;
+  }
+}
